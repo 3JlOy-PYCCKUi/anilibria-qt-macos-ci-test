@@ -37,17 +37,6 @@ stdenv.mkDerivation (finalAttrs: {
     ./fix.patch
   ];
 
-  preConfigure =
-  ''
-    ${lib.optionalString stdenv.hostPlatform.isDarwin
-      ''
-        export PKG_CONFIG_PATH="${mpv-unwrapped.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
-      ''
-    }
-    echo "$PKG_CONFIG_PATH"
-    exit 1
-  '';
-
   qtWrapperArgs = [
     "--prefix GST_PLUGIN_PATH : ${
       (
