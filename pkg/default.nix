@@ -34,6 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
       hash = "sha256-6/oXAObmXS+GKjjLNneMIj2gtKNvz6zHshWDYPv4agY=";
       stripLen = 1;
     })
+    ./fix.patch
   ];
 
   preConfigure =
@@ -44,7 +45,6 @@ stdenv.mkDerivation (finalAttrs: {
       ''
     }
     echo "$PKG_CONFIG_PATH"
-    pkg-config --list-all
     exit 1
   '';
 
