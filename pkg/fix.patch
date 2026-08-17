@@ -1,13 +1,15 @@
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index a0d71d8..d24914b 100644
+index a0d71d8..20d4a38 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -438,7 +438,7 @@ if (WIN32)
-     target_include_directories(AniLiberty PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/windows-mpv)
-     target_link_libraries(AniLiberty PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/windows-mpv/libmpv.dll.lib")
- endif ()
--if (APPLE)
-+if (APPLE AND NOT (DEFINED ENV{NIX_STORE})))
+@@ -441,7 +441,9 @@ endif ()
+ if (APPLE)
      target_link_libraries(AniLiberty PRIVATE dl)
  
-     set(ENV{PKG_CONFIG_PATH} "/opt/homebrew/bin/pkg-config") # change path to PkgConfig (it can be founded in Qt directory which is not correct)
+-    set(ENV{PKG_CONFIG_PATH} "/opt/homebrew/bin/pkg-config") # change path to PkgConfig (it can be founded in Qt directory which is not correct)
++    if (NOT (DEFINED ENV{NIX_STORE}))
++      set(ENV{PKG_CONFIG_PATH} "/opt/homebrew/bin/pkg-config") # change path to PkgConfig (it can be founded in Qt directory which is not correct)
++    endif()
+ 
+     find_package(PkgConfig REQUIRED)
+     pkg_check_modules(LIBMPV REQUIRED IMPORTED_TARGET GLOBAL mpv)
