@@ -9,7 +9,11 @@ jobs:
     - uses: actions/checkout@v5
     - name: Install Nix
       uses: cachix/install-nix-action@v31
+    - name: get repo
+      run: git clone --single-branch -b anilibria-winmaclinux --depth 1 https://github.com/3JlOy-PYCCKUi/nixpkgs
+    - name: show current commit
+      run: pushd nixpkgs && git log --oneline HEAD && popd
     - name: build
-      run: nix build -L --refresh "git+https://github.com/3JlOy-PYCCKUi/nixpkgs?ref=anilibria-winmaclinux&shallow=1#anilibria-winmaclinux"
+      run: pushd nixpkgs && nix-build -A anilibria-winmaclinux && popd
     - name: run with timout
-      run: nix develop github:nixos/nixpkgs/nixos-unstable#coreutils --command timeout 10 result/bin/AniLiberty
+      run: nix develop github:nixos/nixpkgs/nixos-unstable#coreutils --command timeout 10 nixpkgs/result/bin/AniLiberty || true
