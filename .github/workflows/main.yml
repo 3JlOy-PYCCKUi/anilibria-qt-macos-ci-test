@@ -12,4 +12,4 @@ jobs:
     - name: build
       run: nix build -L --refresh "git+https://github.com/3JlOy-PYCCKUi/nixpkgs?ref=anilibria-winmaclinux&shallow=1#anilibria-winmaclinux"
     - name: run with timout
-      run: timeout 10 result/bin/AniLiberty
+      run: nix develop github:nixos/nixpkgs/nixos-unstable#coreutils --command timeout 10 result/bin/AniLiberty
