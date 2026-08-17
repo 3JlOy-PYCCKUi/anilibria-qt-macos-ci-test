@@ -1,7 +1,7 @@
-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+diff --git a/CMakeLists.txt b/CMakeLists.txt
 index a0d71d8..20d4a38 100644
---- a/src/CMakeLists.txt
-+++ b/src/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -441,7 +441,9 @@ endif ()
  if (APPLE)
      target_link_libraries(AniLiberty PRIVATE dl)
