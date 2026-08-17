@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Install Nix
-      uses: DeterminateSystems/nix-installer-action@main
+      uses: cachix/install-nix-action@v31
     - name: build
-      run: nix build -L || curl -sSf https://sshx.io/get | sh -s run
+      run: nix-build || curl -sSf https://sshx.io/get | sh -s run
