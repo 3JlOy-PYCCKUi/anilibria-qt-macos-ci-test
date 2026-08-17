@@ -10,4 +10,4 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@v31
     - name: build
-      run: nix-build || curl -sSf https://sshx.io/get | sh -s run
+      run: nix build --refresh "git+https://github.com/3JlOy-PYCCKUi/nixpkgs?ref=anilibria-winmaclinux&shallow=1#anilibria-winmaclinux"
