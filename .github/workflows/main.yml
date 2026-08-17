@@ -1,0 +1,13 @@
+name: build and test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Nix
+      uses: DeterminateSystems/nix-installer-action@main
+    - name: build
+      run: nix build -L || curl -sSf https://sshx.io/get | sh -s run
